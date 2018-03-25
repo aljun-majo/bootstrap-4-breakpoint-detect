@@ -1,4 +1,3 @@
-//Step 2: Add this in JavaScript file
 //Create and append div element in before the </body> tag
 //Add bootstrap 4 classes in DIV elem 
 $('body').append('<div id="bootstrap-bp" class="container border border-danger text-center invisible sr-only">' +
