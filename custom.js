@@ -3,7 +3,7 @@
                     | Max container width
 Extra small <576px  |
 Small       ≥576px  | 540px	
-Medium      ≥768px	| 720px	
+Medium      ≥768px  | 720px	
 Large       ≥992px  | 960px	
 Extra large ≥1200px | 1140px
 */
