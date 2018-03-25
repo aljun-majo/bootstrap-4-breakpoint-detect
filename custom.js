@@ -1,5 +1,6 @@
 //Create and append div element in before the </body> tag
 //Add bootstrap 4 classes in DIV elem 
+//div elem appended at the bottom of the viewport and it is invisible
 $('body').append('<div id="bootstrap-bp" class="container border border-danger text-center invisible sr-only">' +
 	     '<span class="bp-hide bp-xs">bp-xs</span>' +
 	     '<span class="bp-hide bp-sm">bp-sm</span>' +
