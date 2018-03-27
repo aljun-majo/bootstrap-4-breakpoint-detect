@@ -22,22 +22,22 @@ $('body').append('<div id="bootstrap-bp" class="container border border-danger t
 
 
 		let totalbpArraySrcs = $("#bootstrap-bp span"), spanElems = $("#bootstrap-bp span"), bootstapBPText;
-		console.log($("#bootstrap-bp span"));
 		function getBPResult() {
 			let spanElems = $("#bootstrap-bp span");
 			for (let i = 0; i < totalbpArraySrcs.length; i++) {
 
 			    let valueOfArr = spanElems[i].innerText;
-				console.log("valueOfArr:",valueOfArr);	
+				//console.log("valueOfArr:",valueOfArr);	
 			    if( (valueOfArr.trim()=='') ) {
 				bootstapBPText = spanElems[i].innerHTML;	    	
 			    }    
 			}	
 
 			return bootstapBPText; 
+
 		}//getBPResult
 
-		//getBPResult() return one of these 'bp-xs', 'bp-sm', 'bp-md', 'bp-lg', 'bp-xl'
+		//function getBPResult() = return one of these 'bp-xs', 'bp-sm', 'bp-md', 'bp-lg', 'bp-xl'
 
 		class BreakPointMediaNames {  
 		  constructor (names) {
@@ -49,19 +49,21 @@ $('body').append('<div id="bootstrap-bp" class="container border border-danger t
 		}
 
 		const breakpointMediaArr = ['bp-xs', 'bp-sm', 'bp-md', 'bp-lg', 'bp-xl'];
-		const breakpointMediaObj = new BreakPointMediaNames(breakpointMediaArr);  
-		//console.log("mediaQueryWidth-",  mediaQueryWidth );//["bp-xs", "bp-sm", "bp-md", "bp-lg", "bp-xl"]
-		const breakpointMediaContains =  breakpointMediaObj.contains([ getBPResult() ]);//true
+		const breakpointMediaObj = new BreakPointMediaNames(breakpointMediaArr);  	
+		//check if getBPResult() return value contain one of these breakpointMediaArr values
+		//breakpointMediaContains = true/false 		
+		const breakpointMediaContains =  breakpointMediaObj.contains([ getBPResult() ]);
 
 		//run only when breakpointType = 'bp-xl': bpXLarge
 		function bpXLargeOutsideFunc () {
-		 console.log("breakpointType = 'bp-xl': bpXLarge.");
+
+		    //console.log("breakpointType = 'bp-xl': bpXLarge.");
 		}
 
 		//run only when breakpointType = 'bp-xs': bpXSmall
 		function bpXSmallOutsideFunc () {
 
-			 console.log("breakpointType = 'bp-xs': bpXSmall.");
+			//console.log("breakpointType = 'bp-xs': bpXSmall.");
 		}			
 
 		function getBreakpoint (bpQuery) {
@@ -69,33 +71,36 @@ $('body').append('<div id="bootstrap-bp" class="container border border-danger t
 			  let breakpointMedia;
 
 			  function bpXSmall () {
-				//do goodness
-				bpXSmallOutsideFunc();
-				console.log("breakpoint bpXSmall and INSIDE function.");
+				//do goodness like running new func here or invoke funtion another func
 
-				return breakpointMedia = 'bpXSmall';
+				bpXSmallOutsideFunc();//invoke another function
+
+				//console.log("breakpoint bpXSmall and INSIDE function.");
+				//return breakpointMedia = 'bpXSmall';
 			  }
 			  function bpSmall () {
-				//do goodness
+				//do goodness like running new func here or invoke funtion another func
 
-				console.log("breakpoint bpSmall and INSIDE function.");
-			    return breakpointMedia = 'bpSmall';
+				//console.log("breakpoint bpSmall and INSIDE function.");
+			    //return breakpointMedia = 'bpSmall';
 			  }
 			  function bpMedium () {
-				//do goodness
-				console.log("breakpoint bpMedium and INSIDE function.");
-			    return breakpointMedia = 'bpMedium';
+				//do goodness like running new func here or invoke funtion another func
+				//console.log("breakpoint bpMedium and INSIDE function.");
+			    //return breakpointMedia = 'bpMedium';
 			  }
 			  function bpLarge () {
-				//do goodness
-				console.log("breakpoint bpLarge and INSIDE function.");
-			    return breakpointMedia = 'bpLarge';
+				//do goodness like running new func here or invoke funtion another func
+				//console.log("breakpoint bpLarge and INSIDE function.");
+			    //return breakpointMedia = 'bpLarge';
 			  }
 			  function bpXLarge () {
-				//do goodness
+				//do goodness like running new func here or invoke funtion another func
 				bpXLargeOutsideFunc();//invoke another function
-				console.log("breakpoint bpXLarge and INSIDE function.");
-			    return breakpointMedia = 'bpXLarge';
+
+
+				//console.log("breakpoint bpXLarge and INSIDE function.");
+			    //return breakpointMedia = 'bpXLarge';
 			  }					  
 
 			  var breakpointType = {
@@ -109,31 +114,25 @@ $('body').append('<div id="bootstrap-bp" class="container border border-danger t
 			  };
 
 			  return breakpointType[bpQuery]();
+
 		}//getBreakpoint
 
-		if( breakpointMediaContains ) {
-			let getBPResultFunc = getBPResult();//store function retun value 
-			let breakpointMedia = getBreakpoint( getBPResultFunc );
-			breakpointMedia;//run 	
-		} else {
-			//testing only
-			console.log("Please add the div with span elements inside on it.");
-		}
-
-
-		$(window).resize(function() {   
-
-			if( breakpointMediaContains ) {	
-			getBPResult();//invoke for loop function when viewport resize
-			let getBPResultFunc = getBPResult();//store function retun value 
-			let breakpointMedia = getBreakpoint( getBPResultFunc );
-			breakpointMedia;//run when viewport resize
+		function runBreakpoint() {
+			if( breakpointMediaContains ) {
+				//let getBPResultFunc = getBPResult();//store function retun value 
+				let breakpointMedia = getBreakpoint( getBPResult() );
+				//breakpointMedia;//run 	
 
 			} else {
 				//testing only
-				console.log("Please add the div with span elements inside on it.");
+				console.log("Not Runnig... Please add the div with span elements inside on it.");					
 			}
+		}
 
+		runBreakpoint();
+
+		$(window).resize(function() {   
+			runBreakpoint();
 		});//resize
 
 }); //function
