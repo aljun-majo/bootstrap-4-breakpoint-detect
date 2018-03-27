@@ -129,10 +129,10 @@ $('body').append('<div id="bootstrap-bp" class="container border border-danger t
 			}
 		}
 
-		runBreakpoint();
+		runBreakpoint();//invoke main func
 
 		$(window).resize(function() {   
-			runBreakpoint();
+			runBreakpoint();//invoke main func when resize
 		});//resize
 
 }); //function
