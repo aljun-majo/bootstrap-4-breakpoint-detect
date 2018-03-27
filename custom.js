@@ -1,106 +1,139 @@
-//Create and append div element in before the </body> tag
-//Add bootstrap 4 classes in DIV elem 
-//div elem appended at the bottom of the viewport and it is invisible
-$('body').append('<div id="bootstrap-bp" class="container border border-danger text-center invisible sr-only">' +
-	     '<span class="bp-hide bp-xs">bp-xs</span>' +
-	     '<span class="bp-hide bp-sm">bp-sm</span>' +
-	     '<span class="bp-hide bp-md">bp-md</span>' +
-	     '<span class="bp-hide bp-lg">bp-lg</span>' +
-	     '<span class="bp-hide bp-xl">bp-xl</span>' +
-	     '</div>');
- 
-//check if elem availabe in dom
-if( $("#bootstrap-bp").length){	
 
-	$("#bootstrap-bp span").each(function() {
+$(function() {
+/*!
+Author: amojo
+Author URI: http://www.thegoodartisan.com
+repo: https://github.com/jun20/bootstrap-4-breakpoint-detect
+Description: Bootstrap 4 Breakpoint and @media Detect using JS and CSS
+Version: 1.0.1
+*/	
 
-		//check each span elem has css propery 'display' with value = 'block'
-		if( $(this).css('display') == 'block' ) {
+"use strict";
 
-			//get the text of elem with display value of block
-			let bootstapBPText = $(this).text();
-			//testing
-			console.log("breakpoint (bp): ", bootstapBPText);	
+//create and append div element in before the </body> tag
+// add bootstrap 4 classes 
+	$('body').append('<div id="bootstrap-bp" class="container border border-danger text-center invisible sr-only">' +
+		     '<span class="bp-hide bp-xs">bp-xs</span>' +
+		     '<span class="bp-hide bp-sm">bp-sm</span>' +
+		     '<span class="bp-hide bp-md">bp-md</span>' +
+		     '<span class="bp-hide bp-lg">bp-lg</span>' +
+		     '<span class="bp-hide bp-xl">bp-xl</span>' +
+		     '</div>');
 
 
-			if( bootstapBPText === 'bp-xs' ) {
-				//testing
-				console.log("breakpoint bp-xs.");
-				//do goodness here...
-				
-			} else if( bootstapBPText === 'bp-sm' ) {
-				//testing
-				console.log("breakpoint bp-sm.");
-				//do goodness here...
-				
-			} else if( bootstapBPText === 'bp-md' ) {
-				//testing
-				console.log("breakpoint bp-md.");
-				//do goodness here...
-				
-			} else if( bootstapBPText === 'bp-lg' ) {
-				//testing
-				console.log("breakpoint bp-lg.");
-				//do goodness here...
-				
-			} else if( bootstapBPText ==='bp-xl' ) {
-				//testing
-				console.log("breakpoint bp-xl.");
-				//do goodness here...
-			} else {
-				//testing
-				console.log("Please check if the css style above has been added. See Step 1. And Bootstrap 4 Framework");
+			let totalbpArraySrcs = $("#bootstrap-bp span"), spanElems = $("#bootstrap-bp span"), bootstapBPText;
+			console.log($("#bootstrap-bp span"));
+			function getBPResult() {
+				let spanElems = $("#bootstrap-bp span");
+				for (let i = 0; i < totalbpArraySrcs.length; i++) {
+				   
+				    let valueOfArr = spanElems[i].innerText;
+				 	console.log("valueOfArr:",valueOfArr);	
+				    if( (valueOfArr.trim()=='') ) {
+				    	bootstapBPText = spanElems[i].innerHTML;	    	
+				    }    
+				}	
+
+				return bootstapBPText; 
+			}//getBPResult
+		
+			//getBPResult() return one of these 'bp-xs', 'bp-sm', 'bp-md', 'bp-lg', 'bp-xl'
+
+			class BreakPointMediaNames {  
+			  constructor (names) {
+			    this.names = names;
+			  }
+			  contains(names) {
+			    return names.every((name) => this.names.indexOf(name) !== -1);
+			  }
 			}
-		}//if 
 
-	});//each
+			const breakpointMediaArr = ['bp-xs', 'bp-sm', 'bp-md', 'bp-lg', 'bp-xl'];
+			const breakpointMediaObj = new BreakPointMediaNames(breakpointMediaArr);  
+			//console.log("mediaQueryWidth-",  mediaQueryWidth );//["bp-xs", "bp-sm", "bp-md", "bp-lg", "bp-xl"]
+			const breakpointMediaContains =  breakpointMediaObj.contains([ getBPResult() ]);//true
 
-	//breakpoint check when resize viewport 
-	$(window).resize(function() {   
+			//run only when breakpointType = 'bp-xl': bpXLarge
+			function bpXLargeOutsideFunc () {
+			 console.log("breakpointType = 'bp-xl': bpXLarge.");
+			}
 
-		$("#bootstrap-bp span").each(function() {
+			//run only when breakpointType = 'bp-xs': bpXSmall
+			function bpXSmallOutsideFunc () {
+				
+				 console.log("breakpointType = 'bp-xs': bpXSmall.");
+			}			
 
-			//check each span elem has css propery 'display' with value = 'block'
-			if( $(this).css('display') == 'block' ) {
+			function getBreakpoint (bpQuery) {
 
-				//get the text of elem with display value of block
-				let bootstapBPText = $(this).text();
-				//testing
-				console.log("breakpoint (bp): ", bootstapBPText);	
+				  let breakpointMedia;
+
+				  function bpXSmall () {
+				  	//do goodness
+				  	bpXSmallOutsideFunc();
+				  	console.log("breakpoint bpXSmall and INSIDE function.");
+
+				   	return breakpointMedia = 'bpXSmall';
+				  }
+				  function bpSmall () {
+				  	//do goodness
+
+				  	console.log("breakpoint bpSmall and INSIDE function.");
+				    return breakpointMedia = 'bpSmall';
+				  }
+				  function bpMedium () {
+				  	//do goodness
+				  	console.log("breakpoint bpMedium and INSIDE function.");
+				    return breakpointMedia = 'bpMedium';
+				  }
+				  function bpLarge () {
+				  	//do goodness
+				  	console.log("breakpoint bpLarge and INSIDE function.");
+				    return breakpointMedia = 'bpLarge';
+				  }
+				  function bpXLarge () {
+				  	//do goodness
+				  	bpXLargeOutsideFunc();//invoke another function
+				  	console.log("breakpoint bpXLarge and INSIDE function.");
+				    return breakpointMedia = 'bpXLarge';
+				  }					  
+
+				  var breakpointType = {
+
+				    'bp-xs': bpXSmall,
+				    'bp-sm': bpSmall,
+				    'bp-md': bpMedium,
+				    'bp-lg': bpLarge,
+				    'bp-xl': bpXLarge,
+
+				  };
+
+				  return breakpointType[bpQuery]();
+			}//getBreakpoint
+
+			if( breakpointMediaContains ) {
+				let getBPResultFunc = getBPResult();//store function retun value 
+				let breakpointMedia = getBreakpoint( getBPResultFunc );
+				breakpointMedia;//run 	
+			} else {
+				//testing only
+				console.log("Please add the div with span elements inside on it.");
+			}
 
 
-				if( bootstapBPText === 'bp-xs' ) {
-					//testing
-					console.log("breakpoint bp-xs.");
-					//do goodness here...
-					
-				} else if( bootstapBPText === 'bp-sm' ) {
-					//testing
-					console.log("breakpoint bp-sm.");
-					//do goodness here...
-					
-				} else if( bootstapBPText === 'bp-md' ) {
-					//testing
-					console.log("breakpoint bp-md.");
-					//do goodness here...
-					
-				} else if( bootstapBPText === 'bp-lg' ) {
-					//testing
-					console.log("breakpoint bp-lg.");
-					//do goodness here...
-					
-				} else if( bootstapBPText ==='bp-xl' ) {
-					//testing
-					console.log("breakpoint bp-xl.");
-					//do goodness here...
+			$(window).resize(function() {   
+				
+				if( breakpointMediaContains ) {	
+				getBPResult();//invoke for loop function when viewport resize
+				let getBPResultFunc = getBPResult();//store function retun value 
+				let breakpointMedia = getBreakpoint( getBPResultFunc );
+				breakpointMedia;//run when viewport resize
+
 				} else {
-					//testing
-					console.log("Please check if the css style above has been added. See Step 1. And Bootstrap 4 Framework");
+					//testing only
+					console.log("Please add the div with span elements inside on it.");
 				}
-			}//if 
 
-		});//each
+			});//resize
 
-	});//resize
-
-}//length
+}); //function
