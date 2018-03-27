@@ -127,7 +127,7 @@ $('body').append('<div id="bootstrap-bp" class="container border border-danger t
 				//testing only
 				console.log("Not Runnig... Please add the div with span elements inside on it.");					
 			}
-		}
+		}//runBreakpoint
 
 		runBreakpoint();//invoke main func
 
