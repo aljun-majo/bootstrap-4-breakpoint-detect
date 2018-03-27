@@ -71,7 +71,7 @@ $('body').append('<div id="bootstrap-bp" class="container border border-danger t
 			  let breakpointMedia;
 
 			  function bpXSmall () {
-				//do goodness like running new func here or invoke funtion another func
+				//do goodness like running new func here or invoke another func
 
 				bpXSmallOutsideFunc();//invoke another function
 
@@ -79,23 +79,23 @@ $('body').append('<div id="bootstrap-bp" class="container border border-danger t
 				//return breakpointMedia = 'bpXSmall';
 			  }
 			  function bpSmall () {
-				//do goodness like running new func here or invoke funtion another func
+				//do goodness like running new func here or invoke another func
 
 				//console.log("breakpoint bpSmall and INSIDE function.");
 			    //return breakpointMedia = 'bpSmall';
 			  }
 			  function bpMedium () {
-				//do goodness like running new func here or invoke funtion another func
+				//do goodness like running new func here or invoke another func
 				//console.log("breakpoint bpMedium and INSIDE function.");
 			    //return breakpointMedia = 'bpMedium';
 			  }
 			  function bpLarge () {
-				//do goodness like running new func here or invoke funtion another func
+				//do goodness like running new func here or invoke another func
 				//console.log("breakpoint bpLarge and INSIDE function.");
 			    //return breakpointMedia = 'bpLarge';
 			  }
 			  function bpXLarge () {
-				//do goodness like running new func here or invoke funtion another func
+				//do goodness like running new func here or invoke another func
 				bpXLargeOutsideFunc();//invoke another function
 
 
