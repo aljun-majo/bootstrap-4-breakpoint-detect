@@ -2,7 +2,7 @@
 $(function() {
 /*!
 Author: amojo
-Author URI: http://www.thegoodartisan.com
+Author URI: https://thegoodartisan.com
 repo: https://github.com/jun20/bootstrap-4-breakpoint-detect
 Description: Bootstrap 4 Breakpoint and @media Detect using JS and CSS
 Version: 1.0.1
